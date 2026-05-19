@@ -1,0 +1,400 @@
+/* V4 Updates for Casa Elara */
+
+/* --- 1. Loading Screen Redesign --- */
+.loader-split-container {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  pointer-events: none;
+}
+.loader-half {
+  flex: 1;
+  background-color: #0a0a0a; /* Pure deep black */
+  transition: transform 0.8s cubic-bezier(0.7, 0, 0.3, 1);
+  pointer-events: all;
+}
+.loader-split-container.split-active .loader-top {
+  transform: translateY(-100%);
+}
+.loader-split-container.split-active .loader-bottom {
+  transform: translateY(100%);
+}
+.loader-content-v4 {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 100000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: opacity 0.4s ease;
+}
+.loader-split-container.split-active .loader-content-v4 {
+  opacity: 0;
+}
+.loader-ring-v4-wrapper {
+  position: relative;
+  width: 100px; height: 100px;
+  margin-bottom: 24px;
+}
+.loader-ring-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  transform: rotate(-90deg); /* Start at 12 o'clock */
+}
+.loader-ring-svg circle {
+  fill: none;
+  stroke: var(--tropical-gold);
+  stroke-width: 1.5;
+  stroke-dasharray: 301.59; /* 2 * pi * 48 */
+  stroke-dashoffset: 301.59;
+  animation: drawRing 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+@keyframes drawRing {
+  to { stroke-dashoffset: 0; }
+}
+.loader-logo-v4 {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 64px; height: auto;
+  opacity: 0;
+  animation: dissolveIn 1s ease 1.2s forwards;
+}
+@keyframes dissolveIn {
+  from { opacity: 0; filter: blur(4px); transform: translate(-50%, -50%) scale(0.9); }
+  to { opacity: 1; filter: blur(0); transform: translate(-50%, -50%) scale(1); }
+}
+.loader-title-v4 {
+  display: flex;
+  gap: 8px;
+  color: var(--pure-white);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 20px;
+  letter-spacing: 6px;
+  margin-bottom: 12px;
+}
+.loader-title-v4 span {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: floatUpChar 0.6s ease forwards;
+}
+@keyframes floatUpChar {
+  to { opacity: 1; transform: translateY(0); }
+}
+.loader-subtitle-v4 {
+  color: var(--tropical-gold);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  letter-spacing: 8px;
+  opacity: 0;
+  animation: fadeSubtitle 0.8s ease 2.2s forwards;
+}
+@keyframes fadeSubtitle {
+  to { opacity: 1; }
+}
+.shimmer-particles {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 50% 50%, rgba(200, 168, 78, 0.1) 0%, transparent 2px);
+  background-size: 60px 60px;
+  animation: floatParticles 20s linear infinite;
+  opacity: 0.3;
+}
+@keyframes floatParticles {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-100px); }
+}
+
+/* --- 2. Navbar Morphing Pill --- */
+.navbar-wrapper {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  z-index: 1000;
+  transition: padding 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  padding: 0;
+}
+.navbar {
+  width: 100%;
+  max-width: 100%;
+  padding: 20px 40px;
+  background: transparent !important;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.navbar-wrapper.scrolled {
+  padding-top: 16px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.navbar-wrapper.scrolled .navbar {
+  max-width: 1100px;
+  border-radius: 100px;
+  background: #1a3a2a !important; /* Deep forest green */
+  border: 1px solid rgba(200, 168, 78, 0.3) !important;
+  box-shadow: 0 10px 30px rgba(0, 40, 20, 0.5);
+  padding: 12px 32px;
+}
+.navbar-wrapper.scrolled .nav-btn {
+  border: 1px solid var(--tropical-gold) !important;
+  color: var(--tropical-gold) !important;
+  background: transparent !important;
+  animation: none !important;
+  position: relative;
+}
+.navbar-wrapper.scrolled .nav-btn::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border: 1px solid rgba(200, 168, 78, 0.4);
+  border-radius: 50px;
+  animation: gentlePulsePill 2s infinite;
+}
+@keyframes gentlePulsePill {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(1.1); opacity: 0; }
+}
+
+/* --- 3. Stats Section --- */
+.stats-overlay-v4 {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0, 77, 43, 0.75); /* Deep forest green at 75% */
+}
+.v4-stats {
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 0 !important;
+}
+.v4-stat-item {
+  border-right: 1px solid rgba(200, 168, 78, 0.15); /* Faint vertical gold line */
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.v4-stat-item:last-child {
+  border-right: none;
+}
+.v4-stat-number {
+  font-family: 'Playfair Display', serif;
+  font-size: 64px !important;
+  color: var(--tropical-gold) !important;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 0 !important;
+  text-shadow: none !important;
+}
+.v4-stat-divider {
+  width: 30px;
+  height: 2px;
+  background: var(--tropical-gold);
+  margin: 16px 0;
+}
+.v4-stat-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px !important;
+  color: var(--pure-white) !important;
+  letter-spacing: 4px !important;
+  text-transform: uppercase;
+}
+
+/* --- 4. Testimonials Section --- */
+.v4-testi-bg {
+  background-color: #faf8f3 !important; /* Warm ivory-cream */
+  background-image: url('data:image/svg+xml;utf8,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><path d="M10 90 Q 50 10 90 90" stroke="%23e8efe9" stroke-width="2" fill="none"/></svg>');
+  background-repeat: repeat;
+  background-size: 400px;
+}
+.v4-stagger-words span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: floatUpWord 0.6s ease forwards;
+}
+@keyframes floatUpWord {
+  to { opacity: 1; transform: translateY(0); }
+}
+.v4-testi-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.v4-testi-viewport {
+  overflow: hidden;
+  width: 100%;
+}
+.v4-testi-nav {
+  background: transparent;
+  border: 1px solid var(--tropical-gold);
+  color: var(--tropical-gold);
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+.v4-testi-nav:hover {
+  background: var(--tropical-gold);
+  color: white;
+}
+.v4-testi-card {
+  min-width: calc(33.333% - 20px);
+  background: #fffdfa !important; /* Warm white */
+  border-radius: 12px !important;
+  border-bottom: 2px solid var(--tropical-gold) !important;
+  padding: 40px !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05) !important;
+  transition: transform 0.4s ease, box-shadow 0.4s ease !important;
+}
+.v4-testi-card:hover {
+  transform: translateY(-8px) scale(1) !important; /* Overriding previous scale */
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08) !important;
+}
+.v4-quote-mark {
+  position: absolute;
+  top: 10px; left: 20px;
+  font-family: 'Playfair Display', serif;
+  font-size: 100px;
+  color: var(--tropical-gold);
+  opacity: 0.15;
+  line-height: 1;
+  pointer-events: none;
+}
+.v4-stars i {
+  color: var(--tropical-gold) !important;
+  fill: var(--tropical-gold) !important;
+  width: 16px !important; height: 16px !important;
+}
+.v4-testi-text {
+  font-family: 'Playfair Display', serif !important;
+  font-style: italic;
+  font-size: 18px;
+  color: #444 !important; /* Dark grey */
+  line-height: 1.6;
+  margin: 20px 0;
+}
+.v4-testi-author {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  color: var(--deep-forest);
+  font-size: 16px;
+}
+.v4-testi-location {
+  font-family: 'DM Sans', sans-serif;
+  color: #88a394; /* Light sage grey */
+  font-size: 13px;
+}
+.v4-testi-dots {
+  display: flex; justify-content: center; gap: 8px; margin-top: 32px;
+}
+.v4-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #d4e0d8; cursor: pointer; transition: 0.3s;
+}
+.v4-dot.active {
+  background: var(--tropical-gold);
+  transform: scale(1.2);
+}
+
+/* --- 5. Location Section --- */
+.v4-location-bg {
+  background: #111a14 !important;
+}
+.v4-map {
+  border: 4px solid rgba(200, 168, 78, 0.3);
+  border-radius: 20px;
+  padding: 4px;
+}
+.v4-map-wrapper {
+  border-radius: 16px !important;
+}
+.v4-map-wrapper iframe {
+  filter: grayscale(100%) sepia(40%) hue-rotate(80deg) saturate(1.5) brightness(0.7) contrast(1.2) !important;
+  transform: scale(1);
+  transition: transform 2s ease-out;
+}
+.v4-map.aos-animate .v4-map-wrapper iframe {
+  transform: scale(1.1);
+}
+.v4-sonar-ring {
+  top: 50% !important; left: 50% !important;
+}
+.v4-location-text .address-line {
+  opacity: 0;
+  animation: typingLine 0.5s ease forwards;
+}
+.v4-location-text.aos-animate .address-line:nth-child(1) { animation-delay: 0.2s; }
+.v4-location-text.aos-animate .address-line:nth-child(3) { animation-delay: 0.6s; } /* br is 2 */
+.v4-location-text.aos-animate .address-line:nth-child(5) { animation-delay: 1.0s; }
+@keyframes typingLine { to { opacity: 1; } }
+
+.v4-distances {
+  margin: 24px 0;
+}
+.v4-dist-item {
+  color: rgba(255,255,255,0.8);
+  font-size: 15px;
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 12px;
+}
+.v4-btn-directions {
+  background: var(--deep-forest) !important;
+  color: var(--tropical-gold) !important;
+  border: 1px solid var(--tropical-gold) !important;
+  padding: 12px 28px !important;
+}
+.v4-btn-directions:hover {
+  background: var(--tropical-gold) !important;
+  color: var(--deep-forest) !important;
+}
+
+/* --- 6. Global Fixes --- */
+/* Remove stray green dot if any */
+.testi-quote { display: none !important; } 
+
+/* Wave Dividers */
+.wave-divider {
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+.wave-divider svg {
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 60px;
+}
+
+/* Warm Image Color Grade globally */
+img:not(.nav-logo img, .loader-logo-v4, .footer-logo) {
+  filter: sepia(0.1) hue-rotate(-5deg) saturate(1.1) brightness(1.05);
+}
+
+/* Floating WhatsApp Premium */
+.v4-wa-float {
+  background: var(--deep-forest) !important;
+  border: 2px solid var(--tropical-gold) !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+  animation: none !important; /* removing old wa-pulse */
+}
+.v4-wa-ring {
+  position: absolute;
+  inset: -6px;
+  border: 1px solid rgba(200, 168, 78, 0.6);
+  border-radius: 50%;
+  animation: waPremiumPulse 2s infinite;
+}
+@keyframes waPremiumPulse {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(1.3); opacity: 0; }
+}
