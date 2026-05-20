@@ -7,17 +7,16 @@ const app = express()
 const PORT = process.env.PORT || 5000
 
 const allowedOrigins = [
-  'http://localhost:5173',
-  'http://localhost:5174',
-  'http://localhost:5175',
   'https://casaelara.vercel.app',
   'https://casa-elara.vercel.app',
   'https://casa-elara-frontend.onrender.com'
 ]
 app.use(cors({
   origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) callback(null, true)
-    else callback(new Error('Not allowed by CORS'))
+    // Allow all localhost origins (any port) for local development
+    if (!origin || /^http:\/\/localhost(:\d+)?$/.test(origin)) return callback(null, true)
+    if (allowedOrigins.includes(origin)) return callback(null, true)
+    callback(new Error('Not allowed by CORS'))
   },
   methods: ['POST'],
   allowedHeaders: ['Content-Type']
