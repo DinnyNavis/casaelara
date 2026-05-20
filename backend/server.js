@@ -10,7 +10,8 @@ const allowedOrigins = [
   'https://casaelara.vercel.app',
   'https://casa-elara.vercel.app',
   'https://casa-elara-frontend.onrender.com',
-  'https://casaelara.onrender.com'
+  'https://casaelara.onrender.com',
+  'https://www.casaelara.co.in'
 ]
 app.use(cors({
   origin: (origin, callback) => {
