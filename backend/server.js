@@ -9,7 +9,8 @@ const PORT = process.env.PORT || 5000
 const allowedOrigins = [
   'https://casaelara.vercel.app',
   'https://casa-elara.vercel.app',
-  'https://casa-elara-frontend.onrender.com'
+  'https://casa-elara-frontend.onrender.com',
+  'https://casaelara.onrender.com'
 ]
 app.use(cors({
   origin: (origin, callback) => {
