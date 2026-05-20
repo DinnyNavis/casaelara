@@ -931,7 +931,7 @@ export default function Home() {
         .location-text { flex: 0 0 50%; }
         .cta-banner { position: relative; padding: 120px 0; text-align: center; background-image: url('/9214_livingroomwithstairs.jpeg'); }
         .cta-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(rgba(0, 50, 25, 0.7), rgba(0, 50, 25, 0.8)); }
-        .cta-content { position: relative; z-index: 1; color: white; max-width: 600px; margin: 0 auto; }
+        .cta-content { position: relative; z-index: 1; color: white; max-width: 860px; margin: 0 auto; padding: 0 20px; }
         .cta-buttons { display: flex; gap: 20px; justify-content: center; margin-top: 40px; }
         @media (max-width: 1024px) {
           .welcome-section, .room-row { flex-direction: column !important; }
