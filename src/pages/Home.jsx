@@ -40,9 +40,9 @@ export default function Home() {
           loaderSplit.classList.add('split-active')
           setTimeout(() => {
             if (loaderSplit) loaderSplit.style.display = 'none'
-          }, 800)
+          }, 600)
         }
-      }, 2600)
+      }, 1000)
       return () => clearTimeout(t)
     } else {
       if (loaderSplit) loaderSplit.style.display = 'none'
@@ -211,9 +211,17 @@ export default function Home() {
     const cards = track.querySelectorAll('.v4-testi-card')
     if (!cards.length) return
 
-    const cardWidth = cards[0].offsetWidth + 20
     let currentIndex = 0
     const totalItems = cards.length - 1
+    const isMobile = () => window.innerWidth <= 768
+
+    function getOffset(index) {
+      if (isMobile()) {
+        return `translateX(-${index * 100}%)`
+      }
+      const cardWidth = cards[0].offsetWidth + 30
+      return `translateX(-${index * cardWidth}px)`
+    }
 
     dotsContainer.innerHTML = ''
     for (let i = 0; i < totalItems; i++) {
@@ -230,18 +238,18 @@ export default function Home() {
     function goToSlide(index) {
       currentIndex = index
       track.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
-      track.style.transform = `translateX(-${currentIndex * cardWidth}px)`
+      track.style.transform = getOffset(currentIndex)
       updateDots()
     }
     function nextSlide() {
       currentIndex++
       track.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
-      track.style.transform = `translateX(-${currentIndex * cardWidth}px)`
+      track.style.transform = getOffset(currentIndex)
       if (currentIndex >= totalItems) {
         setTimeout(() => {
           track.style.transition = 'none'
           currentIndex = 0
-          track.style.transform = 'translateX(0)'
+          track.style.transform = getOffset(0)
         }, 500)
       }
       updateDots()
@@ -250,12 +258,12 @@ export default function Home() {
       if (currentIndex <= 0) {
         track.style.transition = 'none'
         currentIndex = totalItems
-        track.style.transform = `translateX(-${currentIndex * cardWidth}px)`
+        track.style.transform = getOffset(currentIndex)
         track.offsetHeight
       }
       currentIndex--
       track.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
-      track.style.transform = `translateX(-${currentIndex * cardWidth}px)`
+      track.style.transform = getOffset(currentIndex)
       updateDots()
     }
 
@@ -555,7 +563,7 @@ export default function Home() {
             <div className="v5-image-wrapper">
               <div className="v5-shadow-card"></div>
               <svg className="v5-leaf-deco" viewBox="0 0 24 24" fill="none" stroke="var(--lush-green)" strokeWidth="1.5"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" /><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" /></svg>
-              <img src="/9283-poolview.jpeg" alt="Welcome to Casa Elara" className="v5-welcome-img" />
+              <img src="/9283-poolview.jpeg" alt="Welcome to Casa Elara" className="v5-welcome-img" loading="lazy" />
             </div>
           </div>
         </div>
@@ -614,7 +622,7 @@ export default function Home() {
           </div>
           <div className="stats-grid v4-stats" id="stats-container">
             <div className="stat-item v4-stat-item">
-              <div className="stat-number v4-stat-number" data-target="3" data-suffix="">0</div>
+              <div className="stat-number v4-stat-number" data-target="7" data-suffix="+">0</div>
               <div className="v4-stat-divider"></div>
               <div className="v6-stat-label">Luxury Rooms</div>
               <div className="v6-stat-sublabel">Elegantly designed for comfort</div>
@@ -823,7 +831,7 @@ export default function Home() {
         <div className="container">
           <div className="footer-grid">
             <div className="footer-col" data-aos="fade-up" data-aos-delay="0">
-              <img src="/logo_transparent.png" alt="Casa Elara" className="footer-logo" />
+              <img src="/logo_transparent.png" alt="Casa Elara" className="footer-logo" loading="lazy" />
               <p>A luxury pool villa experience nestled in the heart of Wayanad, Kerala.</p>
             </div>
             <div className="footer-col" data-aos="fade-up" data-aos-delay="100">
@@ -864,7 +872,9 @@ export default function Home() {
           </div>
           <div className="footer-bottom" data-aos="fade-up" data-aos-delay="400">
             <div>&copy; 2024 Casa Elara. All rights reserved.</div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>Website Designed &amp; Developed for Casa Elara</div>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px' }}>
+              <a href="https://linkedin.com/in/dinnypaulnavisc" target="_blank" rel="noopener noreferrer" className="developer-credit">Created by Green Sync Innovators</a>
+            </div>
           </div>
         </div>
       </footer>
@@ -934,6 +944,8 @@ export default function Home() {
         @media (max-width: 768px) {
           .highlights-grid { grid-template-columns: 1fr; }
         }
+        .developer-credit { color: rgba(255, 255, 255, 0.7); text-decoration: none; transition: color 0.3s ease; font-size: 14px; }
+        .developer-credit:hover { color: var(--tropical-gold); }
       `}</style>
     </>
   )

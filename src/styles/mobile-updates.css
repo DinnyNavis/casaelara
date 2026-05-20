@@ -349,64 +349,84 @@
      7. MOBILE TESTIMONIAL SECTION
      ========================================== */
   .v4-testi-bg {
-    padding: 40px 0 20px !important;
-    overflow: visible !important;
+    padding: 40px 0 30px !important;
   }
 
-  .v4-testi-wrapper {
-    padding: 0 16px !important;
-    overflow: visible !important;
-    box-sizing: border-box !important;
+  /* Wrapper = the full-width slider viewport */
+  .testimonials.v4-testi-wrapper {
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+    position: relative !important;
   }
 
-  .testimonials {
-    overflow: visible !important;
+  /* viewport clips the sliding track */
+  .v4-testi-viewport {
+    width: 100% !important;
+    overflow: hidden !important;
+    position: relative !important;
   }
 
+  /* track: flex row, no gap, width auto so translateX % works on viewport */
   .testi-track {
-    gap: 20px !important;
-    align-items: stretch !important;
-    overflow: visible !important;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    gap: 0 !important;
+    width: 100% !important;
+    will-change: transform !important;
   }
 
+  /* each card = exactly one viewport wide */
   .v4-testi-card {
+    flex: 0 0 100% !important;
     min-width: 100% !important;
     width: 100% !important;
     max-width: 100% !important;
-    flex: 0 0 100% !important;
-    padding: 30px 24px !important;
     box-sizing: border-box !important;
-    height: auto !important;
+    padding: 32px 28px 28px !important;
     margin: 0 !important;
+    height: auto !important;
     overflow: visible !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
   }
 
-  .v4-testi-text {
+  /* review text: full width, wrapping, no clipping */
+  .v4-testi-text,
+  .testi-text {
     font-size: 15px !important;
-    line-height: 1.7 !important;
-    letter-spacing: normal !important;
+    line-height: 1.75 !important;
+    letter-spacing: 0 !important;
     white-space: normal !important;
     word-break: break-word !important;
     overflow-wrap: break-word !important;
-    padding: 0 !important;
     text-align: center !important;
     width: 100% !important;
+    max-width: 100% !important;
     display: block !important;
-  }
-
-  .v4-testi-nav {
-    display: none !important; /* Hide arrows to prevent overlap */
-  }
-
-  /* Force visibility and fix animations failing on mobile */
-  .v4-testi-card .stars,
-  .v4-testi-card .v5-stars-container {
+    overflow: visible !important;
+    padding: 0 !important;
+    margin-bottom: 18px !important;
+    transform: none !important;
+    position: static !important;
     opacity: 1 !important;
     visibility: visible !important;
+  }
+
+  /* stars */
+  .v4-testi-card .stars,
+  .v4-testi-card .v5-stars-container {
     display: flex !important;
+    justify-content: center !important;
+    gap: 4px !important;
+    margin-bottom: 16px !important;
+    opacity: 1 !important;
+    visibility: visible !important;
     transform: none !important;
   }
-  
+
   .v4-testi-card .stars i,
   .v4-testi-card .v5-star {
     opacity: 1 !important;
@@ -416,14 +436,35 @@
     color: #C8A84E !important;
   }
 
-  .v4-testi-card .testi-text,
-  .v4-testi-card .v4-testi-text,
-  .v4-testi-card .v4-testi-author,
-  .v4-testi-card .v4-testi-location {
+  /* author & location */
+  .v4-testi-author {
     opacity: 1 !important;
     visibility: visible !important;
     transform: none !important;
     display: block !important;
+    text-align: center !important;
+    margin-top: 4px !important;
+  }
+
+  .v4-testi-location {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    display: block !important;
+    text-align: center !important;
+  }
+
+  /* hide prev/next arrows on mobile — dots + auto-slide handle navigation */
+  .v4-testi-nav {
+    display: none !important;
+  }
+
+  /* dots */
+  .v4-testi-dots {
+    margin-top: 20px !important;
+    display: flex !important;
+    justify-content: center !important;
+    gap: 8px !important;
   }
 
   /* ==========================================
