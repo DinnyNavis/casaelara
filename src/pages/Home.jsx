@@ -35,14 +35,16 @@ export default function Home() {
           loaderTitle.appendChild(span)
         })
       }
+      // All animations finish at ~3.0s (subtitle ends at 2.2s + 0.8s)
+      // Wait 900ms after everything is visible, then split-close (0.8s), then hide
       const t = setTimeout(() => {
         if (loaderSplit) {
           loaderSplit.classList.add('split-active')
           setTimeout(() => {
             if (loaderSplit) loaderSplit.style.display = 'none'
-          }, 600)
+          }, 900)
         }
-      }, 1000)
+      }, 3900)
       return () => clearTimeout(t)
     } else {
       if (loaderSplit) loaderSplit.style.display = 'none'

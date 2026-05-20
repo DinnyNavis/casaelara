@@ -12,7 +12,7 @@
 .loader-half {
   flex: 1;
   background-color: #0a0a0a; /* Pure deep black */
-  transition: transform 0.8s cubic-bezier(0.7, 0, 0.3, 1);
+  transition: transform 0.9s cubic-bezier(0.7, 0, 0.3, 1);
   pointer-events: all;
 }
 .loader-split-container.split-active .loader-top {
@@ -34,6 +34,7 @@
 }
 .loader-split-container.split-active .loader-content-v4 {
   opacity: 0;
+  transition: opacity 0.5s ease;
 }
 .loader-ring-v4-wrapper {
   position: relative;
