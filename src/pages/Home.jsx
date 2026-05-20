@@ -871,7 +871,7 @@ export default function Home() {
             </div>
           </div>
           <div className="footer-bottom" data-aos="fade-up" data-aos-delay="400">
-            <div>&copy; 2024 Casa Elara. All rights reserved.</div>
+            <div>&copy; 2026 Casa Elara. All rights reserved.</div>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px' }}>
               <a href="https://linkedin.com/in/dinnypaulnavisc" target="_blank" rel="noopener noreferrer" className="developer-credit">Created by Green Sync Innovators</a>
             </div>
