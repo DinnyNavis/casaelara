@@ -799,14 +799,15 @@ export default function Home() {
             <p className="mb-4" style={{ color: 'rgba(255,255,255,0.85)', fontSize: '16px', display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
               <a href="https://maps.app.goo.gl/FYJbZS6r25NtbVXb6" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--tropical-gold)', marginTop: '2px' }}><i data-lucide="map-pin"></i></a>
               <span id="v4-address-typing">
-                <span className="address-line">Changangara,</span><br />
-                <span className="address-line">Pinangode, Vythiri,</span><br />
-                <span className="address-line">Wayanad, Kerala, India</span>
+                <span className="address-line">Cholapuram, Pinangode,</span><br />
+                <span className="address-line">Kalpetta, Wayanad, Kerala,</span><br />
+                <span className="address-line">India</span>
               </span>
             </p>
             <div className="v4-distances">
-              <div className="v4-dist-item"><i data-lucide="arrow-right-circle" style={{ color: 'var(--tropical-gold)', width: '16px', height: '16px' }}></i> 48 km from Calicut Airport</div>
-              <div className="v4-dist-item"><i data-lucide="arrow-right-circle" style={{ color: 'var(--tropical-gold)', width: '16px', height: '16px' }}></i> 14 km from Kalpetta Town</div>
+              <div className="v4-dist-item"><i data-lucide="arrow-right-circle" style={{ color: 'var(--tropical-gold)', width: '16px', height: '16px' }}></i> 84 km from Calicut Airport</div>
+              <div className="v4-dist-item"><i data-lucide="arrow-right-circle" style={{ color: 'var(--tropical-gold)', width: '16px', height: '16px' }}></i> 8 km from Kalpetta Town</div>
+              <div className="v4-dist-item"><i data-lucide="arrow-right-circle" style={{ color: 'var(--tropical-gold)', width: '16px', height: '16px' }}></i> 12 km from Banasura Sagar Dam</div>
             </div>
             <a href="https://maps.app.goo.gl/FYJbZS6r25NtbVXb6" target="_blank" rel="noopener noreferrer" className="btn v4-btn-directions mt-4">
               Get Directions <i data-lucide="external-link" style={{ width: '16px', height: '16px', marginLeft: '8px' }}></i>
